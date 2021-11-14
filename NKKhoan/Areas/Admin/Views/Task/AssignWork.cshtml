@@ -1,0 +1,112 @@
+﻿@model NKKhoan.Models.NKSLK
+
+@{
+    ViewBag.Title = "Assign";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm công việc</h1>
+            </div>
+
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            @using (Html.BeginForm("Save", "Task", FormMethod.Post, new { style = "display: flex; width: 100%;" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-6">
+                                    @Html.HiddenFor(model => model.MaNKSLK)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NgayThucHienKhoan, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10 input-group date" id="reservationdatetime1" data-target-input="nearest">
+
+                                            @Html.EditorFor(model => model.NgayThucHienKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                                            <div class="input-group-append" data-target="#reservationdatetime1" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.NgayThucHienKhoan, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.GioBatDau, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10 input-group date" id="reservationdatetime2" data-target-input="nearest">
+
+                                            @Html.EditorFor(model => model.GioBatDau, new { htmlAttributes = new { @class = "form-control" } })
+                                            <div class="input-group-append" data-target="#reservationdatetime2" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.GioBatDau, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.GioKetThuc, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10 input-group date" id="reservationdatetime3" data-target-input="nearest">
+
+                                            @Html.EditorFor(model => model.GioKetThuc, new { htmlAttributes = new { @class = "form-control" } })
+                                            <div class="input-group-append" data-target="#reservationdatetime3" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.GioKetThuc, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        const PossibleFormats = [
+            'DD/MM/YY',
+            'DD/MM/YYYY',
+            'D/M/YYYY',
+            'HH:mm'
+        ];
+
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) || moment(value, "DD/MM/yyyy", true).isValid();
+        }
+
+        $('#reservationdatetime1').datetimepicker({
+            locale: 'vi',
+            format: 'DD/MM/yyyy'
+        });
+
+        $('#reservationdatetime2').datetimepicker({
+            format: 'HH:mm'
+        });
+
+        $('#reservationdatetime3').datetimepicker({
+            format: 'HH:mm'
+        });
+    })
+</script>

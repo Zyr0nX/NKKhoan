@@ -1,4 +1,5 @@
 ﻿using NKKhoan.Models;
+using NKKhoan.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +36,54 @@ namespace NKKhoan.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            var nkslk = _context.NKSLK.SingleOrDefault(c => c.MaNKSLK == id);
-            if (nkslk == null)
+            var task = _context.NKSLK.SingleOrDefault(c => c.MaNKSLK == id);
+            if (task == null)
                 return HttpNotFound();
-            return View(nkslk);
+            return View(task);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var task = _context.NKSLK.SingleOrDefault(c => c.MaNKSLK == id);
+            if (task == null)
+                return HttpNotFound();
+            else
+            {
+                _context.NKSLK.Remove(task);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Task");
+            }
+        }
+
+        public ActionResult AssignWork(int idTask, int numOfWorks)
+        {
+            var task = _context.NKSLK.SingleOrDefault(c => c.MaNKSLK == idTask);
+            if (task == null)
+                return HttpNotFound();
+            else
+            {
+                ViewBag.NumOfWorks = numOfWorks;
+                return View(task);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(NKSLK task)
+        {
+            if (task.MaNKSLK == 0)
+                _context.NKSLK.Add(task);
+            else
+            {
+                var NKSLKInDb = _context.NKSLK.Single(c => c.MaNKSLK == task.MaNKSLK);
+                NKSLKInDb.MaNKSLK = task.MaNKSLK;
+                NKSLKInDb.NgayThucHienKhoan = task.NgayThucHienKhoan;
+                NKSLKInDb.GioBatDau = task.GioBatDau;
+                NKSLKInDb.GioKetThuc = task.GioKetThuc;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Task");
         }
     }
 }

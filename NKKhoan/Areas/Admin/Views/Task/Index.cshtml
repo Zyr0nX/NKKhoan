@@ -4,14 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-
-
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Nhật ký khoán</h1>
+                <h1>NKSLK</h1>
             </div>
 
         </div>
@@ -25,9 +22,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-sm-2">
-                            <a href="./Task/Create" class="btn btn-primary">
+                            <a href="~/Admin/Task/Create" class="btn btn-primary">
                                 Thêm mới
                             </a>
+                            <input type="text" name="Work" id="Work" />
+                            <input type="text" name="Employee" id="Employee" />
                         </div>
 
                     </div>
@@ -55,11 +54,11 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
+                                    <th>
                                         @Html.DisplayFor(modelItem => item.MaNKSLK)
-                                    </td>
+                                    </th>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.NgayThucHienKhoan)
+                                        @Convert.ToDateTime(item.NgayThucHienKhoan).ToString("dd/MM/yyyy")
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.GioBatDau)
@@ -87,26 +86,26 @@
         </div>
     </div>
 </section>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-      $("#example1").on("click", ".js-delete", function (event) {
-          var button = $(this);
+        $("#example1").on("click", ".js-delete", function (event) {
+            var button = $(this);
 
-          event.preventDefault();
+            event.preventDefault();
 
-          bootbox.confirm("Bạn chắc chắn muốn xoá mục này?", function (r) {
-              if (r) {
-                  window.location = button.attr('href');
-              }
-          })
+            bootbox.confirm("Bạn chắc chắn muốn xoá mục này?", function (r) {
+                if (r) {
+                    window.location = button.attr('href');
+                }
+            })
 
 
-      });
-  });
+        });
+    });
 </script>

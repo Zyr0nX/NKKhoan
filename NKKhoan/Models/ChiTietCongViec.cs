@@ -12,12 +12,14 @@
         [Key]
         [Column(Order = 0)]
         [Display(Name = "Mã khoán")]
+        [ForeignKey("NKSLK")]
         public int MaNKSLK { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "Mã công việc")]
+        [ForeignKey("CongViec")]
         public int MaCongViec { get; set; }
 
         [Key]

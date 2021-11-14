@@ -187,6 +187,18 @@
     <Compile Include="Migrations\202111051348097_init.Designer.cs">
       <DependentUpon>202111051348097_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111070112346_NKSLKValidationMessage.cs" />
+    <Compile Include="Migrations\202111070112346_NKSLKValidationMessage.Designer.cs">
+      <DependentUpon>202111070112346_NKSLKValidationMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111071441442_FuckValidation.cs" />
+    <Compile Include="Migrations\202111071441442_FuckValidation.Designer.cs">
+      <DependentUpon>202111071441442_FuckValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111071900190_F.cs" />
+    <Compile Include="Migrations\202111071900190_F.Designer.cs">
+      <DependentUpon>202111071900190_F.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -200,6 +212,7 @@
     <Compile Include="Models\SanPham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -222,6 +235,7 @@
     <Content Include="Areas\Admin\Views\Task\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\AssignWork.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -292,6 +306,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111051348097_init.resx">
       <DependentUpon>202111051348097_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111070112346_NKSLKValidationMessage.resx">
+      <DependentUpon>202111070112346_NKSLKValidationMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111071441442_FuckValidation.resx">
+      <DependentUpon>202111071441442_FuckValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111071900190_F.resx">
+      <DependentUpon>202111071900190_F.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
