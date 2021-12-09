@@ -5,5 +5,8 @@
     <div class="col-md-10">
 
         @Html.ListBoxFor(model => model.selectedemployee, Model.employees, new { @class = "form-control selectpicker", data_live_search = "true" })
+        <a href="~/Admin/Employee/Create" class="btn btn-primary">
+            Thêm mới
+        </a>
     </div>
 </div>

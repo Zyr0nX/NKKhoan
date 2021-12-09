@@ -73,7 +73,7 @@ namespace NKKhoan.Areas.Admin.Controllers
             return View(employee);
         }
 
-        public ViewResult Create()
+        public ActionResult Create()
         {
             var pb = _context.PhongBan.ToList();
             var cv = _context.ChucVu.ToList();
@@ -83,7 +83,6 @@ namespace NKKhoan.Areas.Admin.Controllers
                 PhongBans = pb,
                 ChucVus = cv
             };
-
             return View("EmployeeForm",viewModel);
         }
 
@@ -119,7 +118,7 @@ namespace NKKhoan.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(CongNhan employee)
+        public ActionResult Save(CongNhan employee, string returnUrl)
         {
             if (employee.MaNhanCong == 0)
                 _context.CongNhan.Add(employee);
@@ -137,7 +136,7 @@ namespace NKKhoan.Areas.Admin.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Employee");
+            return returnUrl != null ? Redirect(returnUrl) : (ActionResult)RedirectToAction("Index", "Employee");
         }
 
         public ActionResult Info(int id, string ngaybatdau = null, string ngayketthuc = null)
